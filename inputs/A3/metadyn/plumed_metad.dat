@@ -1,0 +1,21 @@
+# Activate MOLINFO functionalities
+MOLINFO STRUCTURE=../conf.pdb
+
+rna: GROUP NDX_FILE=../indices.ndx NDX_GROUP=RNA_noH
+rnacenter: CENTER ATOMS=rna
+posrna: POSITION ATOM=rnacenter
+memb: GROUP NDX_FILE=../indices.ndx NDX_GROUP=C116
+membcenter: CENTER ATOMS=memb
+posmemb: POSITION ATOM=membcenter
+d: DISTANCE ATOMS=rnacenter,membcenter SCALED_COMPONENTS
+scaled_zdist: COMBINE ARG=d.c COEFFICIENTS=10.1512 PERIODIC=-5.0756,5.0756
+metad: METAD ...
+
+   ARG=scaled_zdist SIGMA=0.02 TAU=11.25 PACE=200 BIASFACTOR=10 TEMP=323
+   GRID_MIN=-5.0756 GRID_MAX=5.0756
+...
+
+
+PRINT ARG=scaled_zdist,metad.bias FILE=METADYN STRIDE=5000
+
+

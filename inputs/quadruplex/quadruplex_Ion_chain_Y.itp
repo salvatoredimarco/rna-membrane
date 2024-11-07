@@ -1,0 +1,35 @@
+;
+;	File 'quadruplex/quadruplex_Ion_chain_Y.itp' was generated
+;	By user: sdimarco (125326)
+;	On host: login02.leonardo.local
+;	At date: Mon Apr  8 17:33:58 2024
+;
+;	This is a include topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2022.3 (-:
+;	
+;	Executable:   /leonardo/prod/spack/03/install/0.19/linux-rhel8-icelake/gcc-11.3.0/gromacs-2022.3-ua24bar2hnqufltrictym6qdve7thv57/bin/gmx
+;	Data prefix:  /leonardo/prod/spack/03/install/0.19/linux-rhel8-icelake/gcc-11.3.0/gromacs-2022.3-ua24bar2hnqufltrictym6qdve7thv57
+;	Working dir:  /leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/quadruplex/323K
+;	Command line:
+;	  gmx pdb2gmx -f quadruplex/quadruplex.pdb -ff amber_na -o quadruplex/quadruplex.gro -p quadruplex/quadruplex.top -water tip3p -ignh -i posre.itp -posrefc 99999
+;	Force field was read from current directory or a relative path - path added.
+;
+
+[ moleculetype ]
+; Name            nrexcl
+Ion_chain_Y         3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue  21 K   rtp K    q +1.0
+     1          K     21      K      K      1          1       39.1   ; qtot 1
+; residue  22 K   rtp K    q +1.0
+     2          K     22      K      K      2          1       39.1   ; qtot 2
+
+; Include Position restraint file
+#ifdef POSRES
+#include "posre_Ion_chain_Y.itp"
+#endif
+

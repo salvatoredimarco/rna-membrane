@@ -1,0 +1,9 @@
+Input file for running 3D-RISM
+
+        &general
+         startframe=0,   endframe=9999999, interval=1,  keep_files=1,
+         entropy=0, netcdf=1, verbose=2, strip_mask=:WAT,Cl-,Na+,TP3
+
+        /
+        &rism
+         polardecomp=0, thermo="gf",

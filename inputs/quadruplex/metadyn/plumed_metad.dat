@@ -1,0 +1,32 @@
+# Activate MOLINFO functionalities
+MOLINFO STRUCTURE=../conf.pdb
+
+rna: GROUP NDX_FILE=../indices.ndx NDX_GROUP=Quad_core
+rnacenter: CENTER ATOMS=rna
+posrna: POSITION ATOM=rnacenter
+memb: GROUP NDX_FILE=../indices.ndx NDX_GROUP=C116
+membcenter: CENTER ATOMS=memb
+posmemb: POSITION ATOM=membcenter
+d: DISTANCE ATOMS=rnacenter,membcenter SCALED_COMPONENTS
+scaled_zdist: COMBINE ARG=d.c COEFFICIENTS=10.1512 PERIODIC=-5.0756,5.0756
+
+glayer1: GROUP NDX_FILE=../indices.ndx NDX_GROUP=Glayer1
+glayer1_center: CENTER ATOMS=glayer1
+glayer2: GROUP NDX_FILE=../indices.ndx NDX_GROUP=Glayer2
+glayer2_center: CENTER ATOMS=glayer2
+d_kv: DISTANCE ATOMS=glayer1_center,glayer2_center COMPONENTS
+mod_d_kv: DISTANCE ATOMS=glayer1_center,glayer2_center
+costheta: MATHEVAL ARG=d_kv.z,mod_d_kv VAR=x,y FUNC=x/y PERIODIC=NO
+dist_k: DISTANCE ATOMS=639,640
+wall: UPPER_WALLS ARG=dist_k AT=0.42 KAPPA=15000 EXP=2 EPS=1 OFFSET=0
+
+metad: METAD ...
+
+   ARG=scaled_zdist,costheta SIGMA=0.05,0.05 TAU=11.25 PACE=200 BIASFACTOR=10 TEMP=323
+   GRID_MIN=-5.0756,-1 GRID_MAX=5.0756,1
+...
+
+
+PRINT ARG=scaled_zdist,costheta,metad.bias,wall.bias FILE=METADYN STRIDE=10000
+
+
