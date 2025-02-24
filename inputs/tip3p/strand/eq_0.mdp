@@ -1,0 +1,17 @@
+define                  = -DPOSRES -DPOSRES_FC_RNA=1000 -DPOSRES_FC_LIPID=1000.0 
+integrator              = steep
+emtol                   = 1000.0
+nsteps                  = 5000
+nstlist                 = 10
+cutoff-scheme           = Verlet
+rlist                   = 0.9
+vdwtype                 = Cut-off
+vdw-modifier            = None
+DispCorr                = EnerPres
+rvdw                    = 1.0
+coulombtype             = PME
+rcoulomb                = 1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+

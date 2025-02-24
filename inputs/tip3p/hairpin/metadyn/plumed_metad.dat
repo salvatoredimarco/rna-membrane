@@ -1,0 +1,34 @@
+# Activate MOLINFO functionalities
+MOLINFO STRUCTURE=../conf.pdb
+
+rna: GROUP NDX_FILE=../indices.ndx NDX_GROUP=RNA_noH
+rnacenter: CENTER ATOMS=rna
+posrna: POSITION ATOM=rnacenter
+memb: GROUP NDX_FILE=../indices.ndx NDX_GROUP=C116
+membcenter: CENTER ATOMS=memb
+posmemb: POSITION ATOM=membcenter
+d: DISTANCE ATOMS=rnacenter,membcenter SCALED_COMPONENTS
+scaled_zdist: COMBINE ARG=d.c COEFFICIENTS=10.1512 PERIODIC=-5.0756,5.0756
+
+
+d1_1_r: DISTANCE ATOMS=22,505
+d1_2_r: DISTANCE ATOMS=19,503
+d1_3_r: DISTANCE ATOMS=17,502
+restraint: UPPER_WALLS ARG=d1_1_r,d1_2_r,d1_3_r AT=0.22,0.22,0.22 KAPPA=2000,2000,2000
+layer1: GROUP NDX_FILE=../indices.ndx NDX_GROUP=Layer1
+layer1_center: CENTER ATOMS=layer1
+layer2: GROUP NDX_FILE=../indices.ndx NDX_GROUP=Layer2
+layer2_center: CENTER ATOMS=layer2
+d_kv: DISTANCE ATOMS=layer1_center,layer2_center COMPONENTS
+mod_d_kv: DISTANCE ATOMS=layer1_center,layer2_center
+costheta: MATHEVAL ARG=d_kv.z,mod_d_kv VAR=x,y FUNC=x/y PERIODIC=NO
+
+metad: METAD ...
+
+   ARG=scaled_zdist,costheta SIGMA=0.05,0.05 TAU=11.25 PACE=200 BIASFACTOR=10 TEMP=323
+   GRID_MIN=-5.0756,-1 GRID_MAX=5.0756,1
+...
+
+PRINT ARG=scaled_zdist,costheta,metad.bias,restraint.bias FILE=METADYN STRIDE=5000
+
+

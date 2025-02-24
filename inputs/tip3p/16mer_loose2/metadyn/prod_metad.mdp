@@ -1,0 +1,38 @@
+integrator              = md
+dt                      = 0.002
+nsteps                  = 100000000 ; 100000ps = 100ns
+nstxtcout               = 10000
+nstcalcenergy           = 10000
+nstenergy               = 10000
+nstlog                  = 10000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 0.9
+vdwtype                 = Cut-off
+vdw-modifier            = None
+DispCorr                = EnerPres
+rvdw                    = 1.0
+coulombtype             = PME
+rcoulomb                = 1.0
+;
+tcoupl                  = V-rescale
+tc_grps                 = Membrane Water_and_ions RNA
+tau_t                   = 1 1 1
+ref_t                   = 323 323 323
+;
+pcoupl                  = C-rescale
+pcoupltype              = surface-tension 
+tau_p                   = 5
+compressibility         = 4.5e-5  4.5e-5
+ref_p                   = 100     1.0
+refcoord_scaling        = com
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+;
+gen-vel                 = no
+gen-temp                = 323
+gen-seed                = -1
+
