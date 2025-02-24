@@ -1,0 +1,24 @@
+; In this topology include file, you will find position restraint
+; entries for all the heavy atoms in your original pdb file.
+; This means that all the protons which were added by pdb2gmx are
+; not restrained.
+
+[ position_restraints ]
+; atom  type      fx      fy      fz
+     1     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+     3     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+     6     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+     8     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+     9     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    11     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    12     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    14     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    16     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    17     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    20     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    21     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    22     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    23     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    25     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    27     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA
+    29     1  POSRES_FC_RNA  POSRES_FC_RNA  POSRES_FC_RNA

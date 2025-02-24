@@ -1,0 +1,3 @@
+MOLINFO STRUCTURE=../conf.pdb MOLTYPE=rna
+puck1: PUCKERING ATOMS=@sugar-2
+PRINT ARG=puck1.Zx,puck1.Zy FILE=PUCKERING

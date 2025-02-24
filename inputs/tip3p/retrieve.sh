@@ -1,8 +1,8 @@
 #!/bin/bash
-nucls="hairpin"
+nucls="G A U C G2 A2 U2 C2"
 st="100"
 Ts="323"
-bf=10
+bf=5
 ssh-keygen -R "login.leonardo.cineca.it"
 #ssh-keyscan -H "login.leonardo.cineca.it" >> ~/.ssh/known_hosts
 control_path="/tmp/ssh_mux_login.leonardo.cineca.it_sdimarco"
@@ -13,17 +13,18 @@ for nucl in $nucls
 do
 mkdir $nucl
 cd $nucl
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/conf.pdb .
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/conf.gro .
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/topol.top .
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/indices.ndx .
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/*mdp .
-scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/*itp .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/conf.pdb .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/conf.gro .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/topol.top .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/indices.ndx .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/*mdp .
+#scp -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/*itp .
 rm mdout.mdp
-mkdir metadyn
+#mkdir metadyn
 cd metadyn
-scp  -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/prod_metad.mdp .
-scp  -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/plumed_metad.dat .
+#scp  -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/prod_metad.mdp .
+#scp  -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/plumed_metad.dat .
+scp  -o ControlPath=${control_path} leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/plumed_puckering.dat .
 rm mdout.mdp
 cd ../../
 #scp leonardo:/leonardo_scratch/large/userexternal/sdimarco/Membrane/DPPC/output/ST${st}/${T}K/${nucl}/metadyn-bf${bf}-zdist/METADYN_WALL METADYN_WALL_${nucl}

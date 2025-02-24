@@ -1,0 +1,39 @@
+define                  = -DPOSRES -DPOSRES_FC_RNA=400 -DPOSRES_FC_LIPID=400.0 
+integrator              = md
+dt                      = 0.001
+nsteps                  = 500000 ;500ps
+nstxtcout               = 5000
+nstcalcenergy           = 100
+nstenergy               = 1000
+nstlog                  = 1000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 0.9
+vdwtype                 = Cut-off
+vdw-modifier            = None
+DispCorr                = EnerPres
+rvdw                    = 1.0
+coulombtype             = PME
+rcoulomb                = 1.0
+;
+tcoupl                  = V-rescale
+tc_grps                 = Membrane Water_and_ions RNA
+tau_t                   = 1 1 1
+ref_t                   = 323 323 323
+;
+pcoupl                  = C-rescale
+pcoupltype              = surface-tension 
+tau_p                   = 5
+compressibility         = 4.5e-5  4.5e-5
+ref_p                   = 50     1.0
+refcoord_scaling        = com
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+;
+gen-vel                 = no
+gen-temp                = 323
+gen-seed                = -1
+
